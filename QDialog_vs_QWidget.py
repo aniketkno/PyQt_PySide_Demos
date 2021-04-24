@@ -23,8 +23,8 @@ class TestDialog(QtWidgets.QDialog):
 
     def create_widgets(self):
         self.lineedit = QtWidgets.QLineEdit()
-        self.checkbox1 = QtWidgets.QCheckBox("CheckBox1")
-        self.checkbox2 = QtWidgets.QCheckBox("CheckBox2")
+        self.checkbox1 = QtWidgets.QCheckBox()
+        self.checkbox2 = QtWidgets.QCheckBox()
         self.btn_ok = QtWidgets.QPushButton("OK")
         self.btn_cancel = QtWidgets.QPushButton("Cancel")
 
@@ -47,5 +47,11 @@ class TestDialog(QtWidgets.QDialog):
         
 
 if __name__ == "__main__":
-    d = TestDialog()
-    d.show()
+    try:
+        test_dialog.close() # pylint: disable=E0601
+        test_dialog.deleteLater()
+    except:
+        pass
+
+    test_dialog = TestDialog()
+    test_dialog.show()

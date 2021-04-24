@@ -25,16 +25,26 @@ class TestDialog(QtWidgets.QDialog):
         self.lineedit = QtWidgets.QLineEdit()
         self.checkbox1 = QtWidgets.QCheckBox("CheckBox1")
         self.checkbox2 = QtWidgets.QCheckBox("CheckBox2")
-        self.button1 = QtWidgets.QPushButton("Button1")
-        self.button2 = QtWidgets.QPushButton("Button2")
+        self.btn_ok = QtWidgets.QPushButton("OK")
+        self.btn_cancel = QtWidgets.QPushButton("Cancel")
 
     def create_layouts(self):
+        layout_button = QtWidgets.QHBoxLayout()
+        layout_button.addStretch()
+        layout_button.addWidget(self.btn_ok)
+        layout_button.addWidget(self.btn_cancel)
+
+        layout_form = QtWidgets.QFormLayout()
+        layout_form.addRow("Name: ", self.lineedit)
+        layout_form.addRow("Hidden: ", self.checkbox1)
+        layout_form.addRow("Locked: ", self.checkbox2)
+
+
         main_layout = QtWidgets.QVBoxLayout(self)
-        main_layout.addWidget(self.lineedit)
-        main_layout.addWidget(self.checkbox1)
-        main_layout.addWidget(self.checkbox2)
-        main_layout.addWidget(self.button1)
-        main_layout.addWidget(self.button2)
+        main_layout.addLayout(layout_form)
+        main_layout.addLayout(layout_button)
+        
+        
 
 if __name__ == "__main__":
     d = TestDialog()
